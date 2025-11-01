@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timber Nepal - Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+    }
+
+    /* Header Styles */
+    header {
+      background: #00264d;
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 2rem;
+      background: whitesmoke;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .about-section p {
+      font-size: 1rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Feedback Section */
+    .feedback-section {
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin: 2rem auto;
+      max-width: 700px;
+    }
+
+    .feedback-section h2 {
+      font-size: 2rem;
+      color: #00264d;
+      text-align: center;
+    }
+
+    form {
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #555;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    form button {
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    form button:hover {
+      background: #0056b3;
+    }
+
+    #thankYouMessage {
+      display: none;
+      font-size: 1.2rem;
+      color: green;
+      text-align: center;
+      margin-top: 1rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: #00264d;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+
+    footer a {
+      color: lightskyblue;
+      text-decoration: none;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      header .logo h1 {
+        font-size: 2rem;
+      }
+
+      .feedback-section {
+        padding: 1.5rem;
+      }
+
+      form button {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <h1>TimberArt-Nepal</h1>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <h2>Feedback</h2>
+    <p>
+      We value your opinion. Please share your feedback with us to help improve our services.
+    </p>
+  </section>
+
+  <!-- Feedback Section -->
+  <section id="feedback" class="feedback-section">
+    <h2>We Value Your Feedback</h2>
+    <form id="feedbackForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="feedback">Your Feedback:</label>
+      <textarea id="feedback" name="feedback" rows="5" placeholder="Share your thoughts" required></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+    <p id="thankYouMessage">Thank you for your feedback!</p>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>&copy; 2024 TimberArt-Nepal. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const feedbackForm = document.getElementById('feedbackForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+
+    feedbackForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      thankYouMessage.style.display = 'block';
+      feedbackForm.reset();
+
+      // Optionally hide the message after a few seconds
+      setTimeout(() => {
+        thankYouMessage.style.display = 'none';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
