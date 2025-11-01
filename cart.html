@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(255, 250, 250);
+        }
+        header {
+            background-color: darkblue;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: whitesmoke;
+            box-shadow: 0 4px 8px;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .cart-item img {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .cart-item .price {
+            font-weight: bold;
+            color: green;
+        }
+        .quantity-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .quantity-controls button {
+            padding: 5px 10px;
+            border: 1px solid whitesmoke;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-clear {
+            background-color: red;
+            color: white;
+        }
+        .btn-checkout {
+            background-color: goldenrod;
+            color: white;
+        }
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .recent-items {
+            margin-top: 40px;
+            padding: 10px;
+            background-color: lightgray;
+            border-radius: 8px;
+        }
+        .btn-clear-all {
+            background-color: #f44336;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Shopping Cart</h1>
+</header>
+
+<div class="container" id="cart-container">
+    <!-- Cart items will be dynamically inserted here -->
+</div>
+
+<div class="total" id="total-amount">
+    Total: Rs 0
+</div>
+
+<div class="buttons">
+    <button class="btn btn-clear" onclick="clearCart()">Clear Cart</button>
+    <button class="btn btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+    <!-- Added Buy Now button -->
+    <button class="btn btn-checkout" onclick="buyNow()">Buy Now</button>
+</div>
+
+<!-- Recently bought items section -->
+<div class="recent-items" id="recent-items">
+    <h3>Recently Bought Items</h3>
+    <div id="recent-items-container">
+        <!-- Recently bought items will appear here -->
+    </div>
+    <!-- Clear All button -->
+    <button class="btn btn-clear-all" onclick="clearRecentItems()">Clear All</button>
+</div>
+
+<script>
+function renderCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.getElementById('cart-container');
+    const totalAmountElem = document.getElementById('total-amount');
+    cartContainer.innerHTML = ''; 
+    let totalAmount = 0;
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        totalAmountElem.innerHTML = 'Total: Rs 0';
+    } else {
+        cart.forEach((item, index) => {
+            const cartItemDiv = document.createElement('div');
+            cartItemDiv.classList.add('cart-item');
+            
+            cartItemDiv.innerHTML = `
+                <img src="${item.img}" alt="${item.name}">
+                <div class="cart-item-details">
+                    <h3>${item.name}</h3>
+                    <p class="price">Price: Rs ${item.price}</p>
+                    <div class="quantity-controls">
+                        <button onclick="updateQuantity(${index}, -1)">-</button>
+                        <span id="quantity-${index}">${item.quantity}</span>
+                        <button onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                </div>
+            `;
+            cartContainer.appendChild(cartItemDiv);
+            
+            totalAmount += item.price * item.quantity; 
+        });
+        totalAmountElem.innerHTML = `Total: Rs ${totalAmount}`;
+    }
+}
+
+function updateQuantity(index, change) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let item = cart[index];
+
+    if (item) {
+        item.quantity += change;
+
+        if (item.quantity <= 0) {
+            item.quantity = 1; 
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+    }
+}
+
+// Function to clear the cart
+function clearCart() {
+    localStorage.removeItem('cart');
+    renderCart();
+}
+
+// Function for the checkout process
+function checkout() {
+    if (confirm("Are you sure you want to proceed with the purchase?")) {
+        // Clear the cart after purchase
+        localStorage.removeItem('cart');
+        alert("Purchase successful! Your cart is now empty.");
+        renderCart(); 
+    }
+}
+
+// Function to redirect to the payment page
+function buyNow() {
+    // Check if there are items in the cart
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert("Your cart is empty. Please add items to the cart before proceeding.");
+        return;
+    }
+
+    // Save the cart items as recently bought items
+    localStorage.setItem('recentItems', JSON.stringify(cart));
+    
+    // Clear the cart after successful purchase
+    localStorage.removeItem('cart');
+    
+    // Redirect to the payment page
+    window.location.href = "payment.html";
+}
+
+// Function to display recently bought items
+function displayRecentlyBoughtItems() {
+    const recentItems = JSON.parse(localStorage.getItem('recentItems')) || [];
+    const recentItemsContainer = document.getElementById('recent-items-container');
+    
+    if (recentItems.length === 0) {
+        recentItemsContainer.innerHTML = '<p>No recently bought items.</p>';
+    } else {
+        recentItemsContainer.innerHTML = '';
+        recentItems.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('cart-item');
+            itemDiv.innerHTML = `
+                <img src="${item.img}" alt="${item.name}">
+                <div class="cart-item-details">
+                    <h3>${item.name}</h3>
+                    <p class="price">Price: Rs ${item.price}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                </div>
+            `;
+            recentItemsContainer.appendChild(itemDiv);
+        });
+    }
+}
+
+// Function to clear all recently bought items
+function clearRecentItems() {
+    localStorage.removeItem('recentItems');
+    displayRecentlyBoughtItems(); // Update the UI after clearing
+}
+
+// Call the renderCart function when the page loads
+window.onload = function() {
+    renderCart();
+    displayRecentlyBoughtItems();
+};
+</script>
+
+</body>
+</html>
