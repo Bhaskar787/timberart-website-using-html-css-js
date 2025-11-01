@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timber Nepal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+            color: #333;
+        }
+
+        /* Header Styling */
+        .header {
+            background: linear-gradient(90deg, #00264d, #004080);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin: 0;
+            letter-spacing: 1.5px;
+        }
+
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .header nav a:hover {
+            color: #ffd700;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: contain;
+            margin-left: 20px;
+            border: 3px solid white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            padding: 5px;
+        }
+
+        /* Products Section */
+        .products-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .products-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #004080;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: #00264d;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 40px;
+            font-size: 16px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Login/Register Button */
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .auth-buttons a {
+            background-color: white;
+            color: #004080;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .auth-buttons a:hover {
+            background-color: #004080;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>TimberArt-Nepal</h1>
+        <img src="logo.png" alt="Timber Art Nepal Logo" class="logo">
+        <nav>
+            <a href="aboutus.html">About Us</a>
+            <a href="contactus.html">Contact Us</a>
+            <a href="cart.html">My Cart</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="register.html">Register</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div class="products-section" id="products">
+        <h2 class="products-title">Our Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <a href="wood.html"><img src="sovinier.png" alt="Unique Wood Carvings"></a>
+                <h3>Unique Wood Carvings</h3>
+            </div>
+            <div class="product-card">
+                <a href="metal_statues.html"><img src="metal_statues.png" alt="Metal Statues"></a>
+                <h3>Metal Statues</h3>
+            </div>
+            <div class="product-card">
+                <a href="Thangaka.html"><img src="thangka.png" alt="Thangka"></a>
+                <h3>Thangka</h3>
+            </div>
+            <div class="product-card">
+                <a href="TT.html"><img src="trouser.png" alt="Trousers & T-Shirts"></a>
+                <h3>Trousers & T-Shirts</h3>
+            </div>
+            <div class="product-card">
+                <a href="funkybag.html"><img src="funky_bags.png" alt="Funky Bags"></a>
+                <h3>Funky Bags</h3>
+            </div>
+            <div class="product-card">
+                <a href="scarves.html"><img src="scarves.png" alt="Scarves"></a>
+                <h3>Scarves</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 TimberArt-Nepal. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+    </div>
+
+    <script>
+        // Check if the user is logged in
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                alert('Please log in to access the website!');
+                window.location.href = 'login.html';
+            }
+        };
+    </script>
+</body>
+</html>
