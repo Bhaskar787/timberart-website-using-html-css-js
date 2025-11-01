@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TimberArt-Nepal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 40px 20px;
+            gap: 20px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1 1 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h2, .contact-form h2 {
+            color: #27ae60;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .contact-info p strong {
+            color: #27ae60;
+        }
+
+        .contact-form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: #27ae60;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            background: #27ae60;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #1e8449;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info, .contact-form {
+                padding: 15px;
+            }
+
+            .contact-info h2, .contact-form h2 {
+                font-size: 1.6rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Contact TimberArt-Nepal</h1>
+        <p>We're here to help! Reach out to us for inquiries, orders, or assistance.</p>
+    </header>
+
+    <section class="contact-section">
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p><strong>Address:</strong> Thamel, Nepal</p>
+            <p><strong>Phone:</strong> +977 98423219000</p>
+            <p><strong>Email:</strong> TimberArtNepal@gmail.com</p>
+            <p><strong>Working Hours:</strong> 7 AM - 11 PM</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2>Send Us a Report</h2>
+            <form id="contactForm" method="post">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Report</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+                </div>
+                <button type="button" onclick="clearForm()">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function clearForm() {
+            const form = document.getElementById('contactForm');
+            alert("Thank you! Your report has been sent.");
+            form.reset();
+        }
+    </script>
+</body>
+</html>
